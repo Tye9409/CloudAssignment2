@@ -1,0 +1,140 @@
+[
+    {
+        "price": "82.9",
+        "company": "Costco",
+        "address": "130 Ritson Rd N & William St E",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Oshawa Gas Bar",
+        "address": "44 Bloor St E & Albert St",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Pioneer",
+        "address": "800 Taunton Rd W   & Thornton Rd",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Ultramar",
+        "address": "674 Simcoe St S & Bloor St W",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Petro-Canada",
+        "address": "812 Taunton Rd E & Harmony Rd",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Esso",
+        "address": "245 Wentworth St W & Cedar St",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Esso",
+        "address": "3309 Simcoe St N & Columbus Rd",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Ultramar",
+        "address": "1818 Simcoe St N & Niagara Street",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Canadian Tire",
+        "address": "1333 Wilson Rd N & Taunton Rd E",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Husky",
+        "address": "1330 Wilson Rd N near Taunton Rd E",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Global",
+        "address": "540 Taunton Rd E & Wilson Rd N",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Mac's",
+        "address": "531 Ritson Rd S & Dean Ave",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Fas Gas",
+        "address": "258 Park Rd S & Gibb St",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.6",
+        "company": "Husky",
+        "address": "351 Wilson Rd S & Olive Ave",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.9",
+        "company": "Esso",
+        "address": "1311 Harmony Rd N & Taunton Rd E",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.9",
+        "company": "Petro-Canada",
+        "address": "1004 Simcoe St S & Wentworth St W",
+        "area": "Oshawa"
+    },
+    {
+        "price": "88.9",
+        "company": "Husky",
+        "address": "45 Ritson Rd & Bond St E",
+        "area": "Oshawa"
+    },
+    {
+        "price": "89.6",
+        "company": "Shell",
+        "address": "520 King St W & Stevenson Rd N",
+        "area": "Oshawa"
+    },
+    {
+        "price": "89.9",
+        "company": "Shell",
+        "address": "1350 Taunton Rd E & Townline Rd N",
+        "area": "Oshawa"
+    },
+    {
+        "price": "89.9",
+        "company": "Shell",
+        "address": "962 Simcoe  St N & Sunset Dr",
+        "area": "Oshawa"
+    },
+    {
+        "price": "89.9",
+        "company": "Esso",
+        "address": "20 Park Rd S & King St W",
+        "area": "Oshawa"
+    },
+    {
+        "price": "89.9",
+        "company": "Global",
+        "address": "56 Bruce St & Albert St",
+        "area": "Oshawa"
+    },
+    {
+        "price": "90.3",
+        "company": "Petro-Canada",
+        "address": "925 Simcoe St N & Robert St",
+        "area": "Oshawa"
+    }
+]

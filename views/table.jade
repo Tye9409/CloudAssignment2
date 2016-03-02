@@ -1,0 +1,159 @@
+//-index layout for homepage
+extends layout
+
+block content
+  head
+    title Bootstrap Example
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+  body
+    .container
+      h2.wrapper Oshawas Cheapest Gas Prices!
+      p.wrapper
+        | The table below shows the cheapest gas prices in Oshawa. This information was taken from www.gasbuddy.com
+        p #{gasinfo.price}
+      table.table
+        thead
+          tr
+            th Price
+            th Station
+            th Address
+            th Area
+          tr.success
+            td #{gasinfo[0].price}
+            td #{gasinfo[0].company}
+            td #{gasinfo[0].address}
+            td #{gasinfo[0].area}
+          tr.success
+            td #{gasinfo[1].price}
+            td #{gasinfo[1].company}
+            td #{gasinfo[1].address}
+            td #{gasinfo[1].area}
+          tr.success
+            td #{gasinfo[2].price}
+            td #{gasinfo[2].company}
+            td #{gasinfo[2].address}
+            td #{gasinfo[2].area}
+          tr.success
+            td #{gasinfo[3].price}
+            td #{gasinfo[3].company}
+            td #{gasinfo[3].address}
+            td #{gasinfo[3].area}
+          tr.success
+            td #{gasinfo[4].price}
+            td #{gasinfo[4].company}
+            td #{gasinfo[4].address}
+            td #{gasinfo[4].area}
+          tr.success
+            td #{gasinfo[5].price}
+            td #{gasinfo[5].company}
+            td #{gasinfo[5].address}
+            td #{gasinfo[5].area}
+          tr.success
+            td #{gasinfo[6].price}
+            td #{gasinfo[6].company}
+            td #{gasinfo[6].address}
+            td #{gasinfo[6].area}
+          tr.success
+            td #{gasinfo[7].price}
+            td #{gasinfo[7].company}
+            td #{gasinfo[7].address}
+            td #{gasinfo[7].area}
+          tr.success
+            td #{gasinfo[8].price}
+            td #{gasinfo[8].company}
+            td #{gasinfo[8].address}
+            td #{gasinfo[8].area}
+          tr.success
+            td #{gasinfo[9].price}
+            td #{gasinfo[9].company}
+            td #{gasinfo[9].address}
+            td #{gasinfo[9].area}
+          tr.success
+            td #{gasinfo[10].price}
+            td #{gasinfo[10].company}
+            td #{gasinfo[10].address}
+            td #{gasinfo[10].area}
+          tr.success
+            td #{gasinfo[11].price}
+            td #{gasinfo[11].company}
+            td #{gasinfo[11].address}
+            td #{gasinfo[11].area}
+          tr.danger
+            td #{gasinfo[12].price}
+            td #{gasinfo[12].company}
+            td #{gasinfo[12].address}
+            td #{gasinfo[12].area}
+          tr.danger
+            td #{gasinfo[13].price}
+            td #{gasinfo[13].company}
+            td #{gasinfo[13].address}
+            td #{gasinfo[13].area}
+         tr.danger
+            td #{gasinfo[14].price}
+            td #{gasinfo[14].company}
+            td #{gasinfo[14].address}
+            td #{gasinfo[14].area}
+          tr.danger
+            td #{gasinfo[15].price}
+            td #{gasinfo[15].company}
+            td #{gasinfo[15].address}
+            td #{gasinfo[15].area}
+          tr.danger
+            td #{gasinfo[16].price}
+            td #{gasinfo[16].company}
+            td #{gasinfo[16].address}
+            td #{gasinfo[16].area}
+          tr.danger
+            td #{gasinfo[17].price}
+            td #{gasinfo[17].company}
+            td #{gasinfo[17].address}
+            td #{gasinfo[17].area}
+          tr.danger
+            td #{gasinfo[18].price}
+            td #{gasinfo[18].company}
+            td #{gasinfo[18].address}
+            td #{gasinfo[18].area}
+          tr.danger
+            td #{gasinfo[19].price}
+            td #{gasinfo[19].company}
+            td #{gasinfo[19].address}
+            td #{gasinfo[19].area}
+          tr.danger
+            td #{gasinfo[20].price}
+            td #{gasinfo[20].company}
+            td #{gasinfo[20].address}
+            td #{gasinfo[20].area}
+          tr.danger
+            td #{gasinfo[21].price}
+            td #{gasinfo[21].company}
+            td #{gasinfo[21].address}
+            td #{gasinfo[21].area}
+          tr.danger
+            td #{gasinfo[22].price}
+            td #{gasinfo[22].company}
+            td #{gasinfo[22].address}
+            td #{gasinfo[22].area}
+
+
+    br
+    br
+    br
+
+    h2 #{geo.city}, #{geo.region}
+    iframe(width='500', height='300', frameborder='0', style='border:0', src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAIM4GuHA9EDVk3lyM3BDtXBgIsIuWrzPA&q=#{geo.city},+#{geo.region}',  allowfullscreen='')
+    //- meta(name='viewport', content='initial-scale=1.0')
+    //- meta(charset='utf-8')
+    //- #map
+    //- script.
+    //-   var map;
+    //-   function initMap() {
+    //-   map = new google.maps.Map(document.getElementById('map'), {
+    //-   center: {lat: -34.397, lng: 150.644},
+    //-   zoom: 8
+    //-   });
+    //-   }
+    //- script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBOElDSZOTQ_WJWguPjaionkjkGU1HdXeg&callback=initMap', async='', defer='')
