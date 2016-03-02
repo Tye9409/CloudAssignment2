@@ -287,7 +287,11 @@ app.get('/oshawaGasInfo', function(req,res) {
 	console.log(ip);
 
 	//use geoip.lookup(ip) to get the geo info about the location (coordinates, city, region etc.)
-	var geo = geoip.lookup("174.91.133.202");
+	//comment out after pushed to git/cloud
+	//var geo = geoip.lookup("174.91.133.202");
+
+	//use users ip when pushed to cloud
+	var geo = geoip.lookup(ip);
 	//console.log(geo);
 
 	//use api to populate table in the view
