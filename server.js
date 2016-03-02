@@ -12,28 +12,17 @@ var socket = io.listen(server);
 var geoip = require('geoip-lite');
 
 
+//set view engine to use jade
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+//create api for json raw data
 app.get('/api/prices', function(req, res) {
 
 
 
-	//gunna scrape from gasbuddy
-
-	// var count = 0
- //    socket.on('connect', function() {
-	//     count++;
-	//     // client.on('disconnect', function(){
-	//     //     count--;
-	//     // })
-	// })
-	// console.log('The COUNT is: ' + count);
-
-
-
+	//scrape information from gasbuddy.com
 	url = 'http://www.torontogasprices.com/Oshawa/index.aspx';
 
 	//first param is url
@@ -43,13 +32,19 @@ app.get('/api/prices', function(req, res) {
 
 		//check for errors during request
 		if(!error) {
+			//load full html
 			var $ = cheerio.load(html);
 
+			//load html at specified div for pricing information
 			var $$ = cheerio.load(html)('div.sp_p');
 
+			//create json object to store scraped details
 			var price = [], company = [], address = [], area = [];
 			var json = { price : "", company : "", address : "", area : ""};
 
+			//get all the prices on the webpage, since the webpage had configured against scraping the price, a workaround was figured out to get all
+			//the pricing info by getting each number and combining them to create a regular looking gas price
+			//push all pices into array, then into json object
 			var price0 = ($$[0].children[0].attribs.class + $$[0].children[1].attribs.class + $$[0].children[2].attribs.class + $$[0].children[3].attribs.class);
 			var price0trim = price0.replace(/p/g,"").replace(/d/g,".")
 			price.push(price0trim);
@@ -142,9 +137,11 @@ app.get('/api/prices', function(req, res) {
 			var price22trim = price22.replace(/p/g,"").replace(/d/g,".")
 			price.push(price22trim);
 
-
-
+			//push prices into json object
 			json.price = price;
+
+			//console logging to verify pricing
+
 			// console.log(price0trim);
 			// console.log(price1trim);
 			// console.log(price2trim);
@@ -170,23 +167,23 @@ app.get('/api/prices', function(req, res) {
 			// console.log(price22trim);
 			
 
-			//address in different section, new jquery filter needed
+			//get station name and address, in the address section of the html
 			$('.address').filter(function() {
 
 				var data = $(this);
 
-				//no traversal needed
+				//get the company name and push into array
 				companyData = data.children().first().text().trim();
 				company.push(companyData);
 				//console.log(company);
 
-
+				//get the address of the station and push into array
 				var addressData = data.find('dd').first().text();
 				address.push(addressData);
 				//console.log(address);
 
 
-				//send to json object
+				//send info to json object
 				json.company = company; 
 				json.address = address;
 			})
@@ -200,6 +197,7 @@ app.get('/api/prices', function(req, res) {
 				//no traversal needed
 				areaData = data.text();
 
+				//push to array
 				area.push(areaData);
 
 				//console.log(area);
@@ -221,14 +219,17 @@ app.get('/api/prices', function(req, res) {
 			newnewjson.area = json.area[i];
 			newjson.push(newnewjson);
 		}
-		//console.log(newjson);
+
+		//send response of json object to api
 		res.send(newjson);
 
+		//write output file locally
 		fs.writeFile('output.json', JSON.stringify(newjson, null, 4), function(err) {
 			console.log('File successfully written - check for output.json');
 		})
 
-		//message indicating no UI for now
+		//message indicating no UI for now, used during testing and verifying data
+
 		// res.send(
 		// 	json.price[0] + " | " + json.company[0] + " | " + json.address[0] + " | " + json.area[0] + '<br>' 
 		// 	+ json.price[1] + " | " + json.company[1] + " | " + json.address[1] + " | " + json.area[1] + '<br>'
@@ -248,7 +249,9 @@ app.get('/api/prices', function(req, res) {
 		// 	 );
 
 
-		// //////////////////////////////COUCHDB////////////////////////////////////////////////
+		////////////////////////////////COUCHDB////////////////////////////////////////////////
+
+		//insert information into couchdb so all information is stored to track changes in pricing
 
 		var nano = require('nano')('http://localhost:5984');
 
@@ -256,8 +259,7 @@ app.get('/api/prices', function(req, res) {
 	    nano.db.create('gasprices', function() {
 	      // specify the database name
 		    var gasprices = nano.use('gasprices');
-		    // and insert users names who have accessed system into couchDB
-		    //var dbjson = JSON.stringify(newjson, null, 4);
+		    // insert pricing information json object
 		    gasprices.insert(json, function(err, body, header) {
 		      if (err) {
 		        console.log('[gasprices.insert] ', err.message);
@@ -272,24 +274,30 @@ app.get('/api/prices', function(req, res) {
 
 })
 
+//render the homepage
 app.get('/', function(req,res) {
 	res.render('index');
 })
 
-app.get('/bastard', function(req,res) {
+//render the page which displays the users information
+app.get('/oshawaGasInfo', function(req,res) {
 	
+	//use the users ip to get their location
 	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	console.log(ip);
 
+	//use geoip.lookup(ip) to get the geo info about the location (coordinates, city, region etc.)
 	var geo = geoip.lookup("174.91.133.202");
 	//console.log(geo);
 
+	//use api to populate table in the view
 	url = 'http://localhost:8081/api/prices';
 
 	request(url, function(error, response, html) {
 		if(!error) {
+			//parse json to send as object instead of string
 			newjson = JSON.parse(response.body);
-			// console.log(response.body);
+			//render table, send json object + geo information from ip address
 			res.render('table', {gasinfo: newjson, geo: geo});
 			console.log(newjson.length);
 			console.log(geo);
@@ -297,7 +305,7 @@ app.get('/bastard', function(req,res) {
 		}
 	});
 })
-
+//listen on port 8081
 app.listen('8081');
 
 console.log('scraper listening on port 8081');

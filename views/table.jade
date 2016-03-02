@@ -13,7 +13,7 @@ block content
     .container
       h2.wrapper Oshawas Cheapest Gas Prices!
       p.wrapper
-        | The table below shows the cheapest gas prices in Oshawa. This information was taken from www.gasbuddy.com
+        | The table below shows the cheapest gas prices in Oshawa.
         p #{gasinfo.price}
       table.table
         thead
@@ -140,11 +140,29 @@ block content
 
 
     br
+
+    h3.wrapper What Area Are You Currently In?
+    br
+    br
+    iframe.mymap(width='500', height='300', frameborder='0', style='float: left;', src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAIM4GuHA9EDVk3lyM3BDtXBgIsIuWrzPA&q=#{geo.city},+#{geo.region}',  allowfullscreen='')
+    br
+    br
     br
     br
 
-    h2 #{geo.city}, #{geo.region}
-    iframe(width='500', height='300', frameborder='0', style='border:0', src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAIM4GuHA9EDVk3lyM3BDtXBgIsIuWrzPA&q=#{geo.city},+#{geo.region}',  allowfullscreen='')
+
+    h4.wrapper Looks like You are in #{geo.city}!
+    h4.wrapper#greeting 
+    script.
+      if ( '#{geo.city}' == "Oshawa") {
+      document.getElementById("greeting").innerHTML = "Fill up at the cheapest station!";
+      }
+      else{
+      document.getElementById("greeting").innerHTML = "Fill up if you are ever in Oshawa!" 
+
+      }
+
+
     //- meta(name='viewport', content='initial-scale=1.0')
     //- meta(charset='utf-8')
     //- #map
